@@ -159,6 +159,7 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
+          custom_leads_webhhok(entry) if entry['changes'.freeze].present?
           next unless entry['messaging'.freeze]
 
           # Facebook may batch several items in the 'messaging' array during
@@ -166,6 +167,13 @@ module Facebook
           entry['messaging'.freeze].each do |messaging|
             Facebook::Messenger::Bot.receive(messaging)
           end
+        end
+      end
+
+      def custom_leads_webhhok(record)
+        record['changes'.freeze].each do |change|
+          next unless change['field'.freeze] == 'leadgen'.freeze
+          Facebook::Messenger::Bot.receive(change)
         end
       end
 
