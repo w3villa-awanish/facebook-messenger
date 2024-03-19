@@ -13,6 +13,7 @@ require 'facebook/messenger/incoming/policy_enforcement'
 require 'facebook/messenger/incoming/pass_thread_control'
 require 'facebook/messenger/incoming/game_play'
 require 'facebook/messenger/incoming/message_reaction'
+require 'facebook/messenger/incoming/leadgen'
 
 module Facebook
   module Messenger
@@ -25,7 +26,7 @@ module Facebook
       #   handler classes.
       EVENTS = {
         'message' => Message,
-        'field' => Field,
+        'field' => Leadgen
         'delivery' => Delivery,
         'postback' => Postback,
         'optin' => Optin,
