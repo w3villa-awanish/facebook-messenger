@@ -26,7 +26,7 @@ module Facebook
       #   handler classes.
       EVENTS = {
         'message' => Message,
-        'field' => Leadgen
+        'field' => Leadgen,
         'delivery' => Delivery,
         'postback' => Postback,
         'optin' => Optin,
